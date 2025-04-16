@@ -1,0 +1,42 @@
+openapi: "3.1.0"
+info:
+  title: "Google Sheet 腳本助手 API"
+  version: "1.0.0"
+  description: "查詢與編輯腳本排程（不需 token）"
+
+servers:
+  - url: "https://script.google.com/macros/s/AKfycbxc9cVBib1QsoADRce-PQvlFSWKZGl4goYVG6Ihvgzahxq0KHZPttFu59Rk4tk7V0O3tQ/exec"
+
+paths:
+  /:
+    get:
+      summary: "查詢單日或區間腳本資料"
+      operationId: "getScriptByDate"
+      parameters:
+        - name: "date"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            example: "2025-04-12"
+        - name: "start"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            example: "2025-04-12"
+        - name: "end"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            example: "2025-04-15"
+      responses:
+        "200":
+          description: "成功查詢腳本內容"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
