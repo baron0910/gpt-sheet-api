@@ -1,8 +1,8 @@
 openapi: "3.1.0"
 info:
-  title: "Google Sheet 腳本助手 API"
-  version: "1.0.0"
-  description: "查詢與編輯腳本排程（不需 token）"
+  title: "Google Sheet 腳本查詢 API"
+  version: "1.1.0"
+  description: "支援單日與範圍查詢，可指定欄位，來自 Google Apps Script 的 Web API"
 
 servers:
   - url: "https://script.google.com/macros/s/AKfycbxc9cVBib1QsoADRce-PQvlFSWKZGl4goYVG6Ihvgzahxq0KHZPttFu59Rk4tk7V0O3tQ/exec"
@@ -10,30 +10,36 @@ servers:
 paths:
   /:
     get:
-      summary: "查詢單日或區間腳本資料"
-      operationId: "getScriptByDate"
+      summary: "查詢腳本資料"
+      operationId: getScriptData
       parameters:
-        - name: "date"
-          in: "query"
+        - name: date
+          in: query
           required: false
           schema:
-            type: "string"
+            type: string
             example: "2025-04-12"
-        - name: "start"
-          in: "query"
+        - name: start
+          in: query
           required: false
           schema:
-            type: "string"
+            type: string
             example: "2025-04-12"
-        - name: "end"
-          in: "query"
+        - name: end
+          in: query
           required: false
           schema:
-            type: "string"
+            type: string
             example: "2025-04-15"
+        - name: field
+          in: query
+          required: false
+          schema:
+            type: string
+            example: "日期,B腳本主題,B腳本收尾方式"
       responses:
         "200":
-          description: "成功查詢腳本內容"
+          description: 成功回傳腳本資料
           content:
             application/json:
               schema:
