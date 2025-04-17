@@ -16,21 +16,24 @@ paths:
         - name: "date"
           in: "query"
           required: false
-          schema:
-            type: string
-            example: "2025-04-12"
-        - name: "start"
-          in: "query"
-          required: false
-          schema:
-            type: string
-            example: "2025-04-12"
-        - name: "end"
-          in: "query"
-          required: false
+          description: "指定查詢的日期（格式：YYYY-MM-DD）"
           schema:
             type: string
             example: "2025-04-15"
+        - name: "start"
+          in: "query"
+          required: false
+          description: "開始時間（格式：HH:mm，例如 09:00）"
+          schema:
+            type: string
+            example: "09:00"
+        - name: "end"
+          in: "query"
+          required: false
+          description: "結束時間（格式：HH:mm，例如 10:30）"
+          schema:
+            type: string
+            example: "09:30"
         - name: "field"
           in: "query"
           required: false
@@ -40,10 +43,12 @@ paths:
             example: "B腳本主題,B腳本收尾方式"
       responses:
         "200":
-          description: "成功查詢資料"
+          description: "成功查詢資料（最多回傳 100 筆）"
           content:
             application/json:
               schema:
                 type: array
                 items:
                   type: object
+                  example:
+                    B腳本主題: "日常觀察"
